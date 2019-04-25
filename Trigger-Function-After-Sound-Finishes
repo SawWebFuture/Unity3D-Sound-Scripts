@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TriggerAfterSound : MonoBehaviour {
+
+    private AudioSource audioSource;
+    private bool clickActive = false;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+    
+    public void AnswerQuestion(int index)
+    {
+        
+        //click active is 
+        if (!clickActive)
+        {
+            StartCoroutine(AnswerClicked(index));
+            clickActive = true;
+        }
+        
+    }
+
+    IEnumerator AnswerClicked(int index)
+    {
+        audioSource.Play();
+        yield return new WaitWhile(() => audioSource.isPlaying);
+        //Your desired action goes here and will only be called after audio is finished
+    }
+
+    
+}
