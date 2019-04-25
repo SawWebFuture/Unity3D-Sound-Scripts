@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class RandomizeAudioClips : MonoBehaviour
+{
+    public AudioClip[] audioClips;
+
+    private AudioSource audiosource;
+
+    void Start () {
+      //This gets the current AudioSource in the script area
+      audiosource = GetComponent<AudioSource> ();
+      //This generated a random number within the range of your audioClips
+      int Rand = Random.Range(0, audioClips.Length);
+      //Switches out the audioclip in the current AudioSource
+      audiosource.clip = audioClips[Rand];
+      //Play the new randomized audioclip
+      audiosource.Play();
+    }
+}
+
+
